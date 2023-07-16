@@ -9,13 +9,51 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            List{
+                NavigationLink {
+                    PreventScreenshotView{
+                        GeometryReader{
+                            let size = $0.size
+                            Image(.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: size.width,height: size.width)
+                            
+                            
+                        }
+                        .padding(15)
+                    }
+                    .navigationTitle("Image")
+                } label: {
+                    Text("Show Image")
+                }
+                
+                NavigationLink {
+                    List{
+                        Section("Some Key") {
+                            PreventScreenshotView {
+                                Text("1LolB5Lslo9kjllnKL4")
+                            }
+                        }
+                        
+                        Section("Other Key") {
+                            PreventScreenshotView {
+                                Text("1Q2W3e4r5T")
+                            }
+                        }
+                        
+                    }.navigationTitle("Keys")
+                    
+                } label: {
+                    Text("Show Api Keys")
+                }
+
+            }
+            .navigationTitle("My List")
+                
         }
-        .padding()
+      
     }
 }
 
